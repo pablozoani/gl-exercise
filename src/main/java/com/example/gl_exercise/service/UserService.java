@@ -54,12 +54,6 @@ public class UserService {
 
         user.setLastLogin(LocalDateTime.now());
 
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-
-        }
-
         this.userRepository.save(user);
 
         return this.userMapper.toLoginResponse(user, token);

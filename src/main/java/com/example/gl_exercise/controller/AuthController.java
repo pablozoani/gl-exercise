@@ -4,6 +4,7 @@ import com.example.gl_exercise.message.LoginResponse;
 import com.example.gl_exercise.message.SignUpRequest;
 import com.example.gl_exercise.message.SignUpResponse;
 import com.example.gl_exercise.service.UserService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<?> signUp(@RequestBody SignUpRequest req) {
+    public ResponseEntity<?> signUp(@RequestBody @Valid SignUpRequest req) {
         SignUpResponse signUpResponse = this.userService.signUpUser(req);
         return ResponseEntity.ok(signUpResponse);
     }
