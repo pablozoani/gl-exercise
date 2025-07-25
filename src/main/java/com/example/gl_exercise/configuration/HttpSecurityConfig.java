@@ -23,6 +23,15 @@ class HttpSecurityConfig {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
+    /**
+     * Filtro de seguridad global para las peticiones http.
+     * Deshabilita la protección CSRF y la creación de sesiones http.
+     * Autoriza a cualquier usuario a realizar llamadas POST sobre el endpoint /sign-up.
+     * Las demás llamadas van a pasar por el filtro JWT.
+     *
+     * @param http objeto para configurar la seguridad http
+     * @return SecurityFilterChain objeto construido y configurado para la cadena de filtros http.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.cors(Customizer.withDefaults())

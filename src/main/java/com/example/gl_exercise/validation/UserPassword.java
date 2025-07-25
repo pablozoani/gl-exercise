@@ -9,8 +9,12 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-@Target(ElementType.FIELD)
+/**
+ * Anotación de validación para contraseñas de usuario. Valida que una contraseña cumpla con los requisitos: Longitud
+ * entre 8-12 caracteres, contenga exactamente 1 letra mayúscula, contenga exactamente 2 números, los demás
+ * caracteres sean letras minúsculas.
+ */
+ @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = UserPasswordValidator.class)
 public @interface UserPassword {

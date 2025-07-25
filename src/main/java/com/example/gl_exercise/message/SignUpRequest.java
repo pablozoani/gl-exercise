@@ -9,12 +9,30 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
+/**
+ * Solicitud que se recibe en el endpoint /sign-up.
+ *
+ * @param username nombre de usuario, opcional.
+ * @param email    correo electrónico del usuario, bien formateado.
+ * @param password contraseña del usuario, se deben cumplir las reglas por @UserPassword.
+ * @param phones   Lista de teléfonos, opcional.
+ */
 public record SignUpRequest(
     @Nullable String username,
-    @NotNull @Email String email,
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
+    String email,
     @UserPassword String password,
-    @Nullable List<@NotNull @Valid Phone> phones
+    @Nullable List<@NotNull(message = "A phone cannot be null") @Valid Phone> phones
 ) {
+
+    /**
+     * Teléfono del usuario.
+     *
+     * @param number número de teléfono.
+     * @param cityCode código de la ciudad.
+     * @param countryCode código del país.
+     */
     public record Phone(
         @NotNull Long number,
         @NotNull Integer cityCode,
